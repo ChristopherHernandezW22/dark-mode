@@ -7,8 +7,11 @@ import Navbar from "./components/Navbar";
 
 import "./styles.scss";
 
+import useLocalStorage from './hooks/useLocalStorage';
+
 const App = () => {
   const [coinData, setCoinData] = useState([]);
+  const [local, setLocal] = useLocalStorage('testkey', [1, 2, 3]);
 
   useEffect(() => {
     axios
@@ -20,6 +23,7 @@ const App = () => {
   }, []);
   return (
     <div className="App">
+      {JSON.stringify(local)}
       <Navbar />
       <Charts coinData={coinData} />
     </div>
